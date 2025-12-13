@@ -8,7 +8,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="border rounded-lg h-full w-fit p-2 text-center">
+  <div class="border h-fit rounded-lg w-fit p-2 text-center">
     <!-- info -->
     <h2 class="m-2 text-md border-b select-none">{{ props.name }}</h2>
     <InputLevel label="Level" />
