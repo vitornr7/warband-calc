@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 const heroes = [
   'Alayen',
   'Artimenner',
@@ -17,26 +19,53 @@ const heroes = [
   'Rolf',
   'Ymira',
 ]
+
+const selectedHeroes = ref<string[]>([])
+
+function handleHeroSelected(hero: string) {
+  if (!selectedHeroes.value?.includes(hero)) selectedHeroes.value?.push(hero)
+}
+
+function handleHeroRemove(hero: string) {
+  selectedHeroes.value = selectedHeroes.value.filter((h) => h !== hero)
+}
 </script>
 
 <template>
-  <div class="bg-amber-500 h-screen antialiased flex">
-    <div class="w-50 h-full border border-green-500">
-      <h2 class="border border-b-amber-200 text-center mb-6">Companions</h2>
+  <div class="bg-amber-950 text-amber-100 h-screen antialiased flex">
+    <!-- companion list section -->
+    <div class="w-50 h-full p-2">
+      <h2 class="text-center mb-4">Companions</h2>
 
-      <ul class="list-none flex flex-col gap-1 justify-center text-center">
-        <li
-          v-for="hero in heroes"
-          :key="hero"
-          class="border rounded-full select-none bg-amber-600 hover:bg-amber-800"
-        >
-          {{ hero }}
+      <ul class="flex flex-col gap-1 text-center">
+        <li v-for="hero in heroes" :key="hero" class="flex">
+          <!-- add companion button -->
+          <div
+            class="w-full border-2 border-amber-800 rounded-full select-none bg-amber-600 hover:bg-amber-200 text-amber-100 flex align-middle justify-center"
+            :class="selectedHeroes.includes(hero) ? 'rounded-r-none' : ''"
+            @click="handleHeroSelected(hero)"
+          >
+            {{ hero }}
+          </div>
+
+          <!-- remove companion button -->
+          <div
+            v-if="selectedHeroes.includes(hero)"
+            class="w-10 border-2 border-amber-800 rounded-full rounded-l-none border-l-0 select-none bg-amber-600 hover:bg-amber-200 font-bold text-red-500"
+            @click="handleHeroRemove(hero)"
+          >
+            x
+          </div>
         </li>
       </ul>
     </div>
 
-    <div class="w-full h-full border border-blue-500 p-4">hero cards</div>
+    <!-- card section -->
+    <div class="w-full h-full p-4 border">
+      {{ selectedHeroes }}
+    </div>
 
-    <div class="w-50 h-full border border-red-500 p-4">party bonuses</div>
+    <!-- party bonuses section -->
+    <div class="w-50 h-full p-4">party bonuses</div>
   </div>
 </template>
