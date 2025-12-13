@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import InputLevel from './components/InputLevel.vue'
+import HeroCard from './components/HeroCard.vue'
 
 const heroes = [
   'Alayen',
@@ -33,16 +33,16 @@ function handleHeroRemove(hero: string) {
 </script>
 
 <template>
-  <div class="h-screen overflow-auto antialiased flex bg-black text-white">
+  <div class="antialiased flex bg-black text-white p-2">
     <!-- companion list section -->
-    <div class="w-50 h-full p-2">
+    <div class="w-50">
       <h2 class="text-center mb-4">Companions</h2>
 
       <ul class="flex flex-col gap-1 text-center">
         <li v-for="hero in heroes" :key="hero" class="flex">
           <!-- add companion button -->
           <div
-            class="w-full border rounded-full select-none hover:bg-white hover:text-black flex align-middle justify-center"
+            class="w-full border rounded-full select-none hover:bg-white hover:text-black flex align-middle justify-center hover:cursor-pointer"
             :class="selectedHeroes.includes(hero) ? 'rounded-r-none' : ''"
             @click="handleHeroSelected(hero)"
           >
@@ -52,7 +52,7 @@ function handleHeroRemove(hero: string) {
           <!-- remove companion button -->
           <div
             v-if="selectedHeroes.includes(hero)"
-            class="w-10 border border-white rounded-full rounded-l-none border-l-0 select-none hover:bg-white hover:text-black font-bold"
+            class="w-10 border border-white rounded-full rounded-l-none border-l-0 select-none hover:bg-white hover:text-black font-bold hover:cursor-pointer"
             @click="handleHeroRemove(hero)"
           >
             x
@@ -62,26 +62,14 @@ function handleHeroRemove(hero: string) {
     </div>
 
     <!-- card section -->
-    <div class="w-full h-full p-4 border">
-      <!-- {{ selectedHeroes }} -->
-      <div class="border border-blue-200 h-full w-fit p-2">
-        <!-- info -->
-        <h2 class="m-2 border-b border-white">Name</h2>
-
-        <!-- stats -->
-        <h2 class="m-2 border-b border-white">Status</h2>
-        <InputLevel label="STR" />
-        <InputLevel label="AGI" />
-        <InputLevel label="INT" />
-        <InputLevel label="CHA" />
-
-        <!-- skills -->
-        <h2 class="m-2 border-b border-white">Skills</h2>
-        <InputLevel v-for="i in 24" :key="`skillLbl-${i}`" :label="`${i}`" />
-      </div>
+    <div class="w-full p-4 border rounded-lg mx-4 flex gap-4 overflow-x-scroll">
+      <HeroCard />
+      <HeroCard />
+      <HeroCard />
+      <HeroCard />
     </div>
 
     <!-- party bonuses section -->
-    <div class="w-50 h-full p-4">party bonuses</div>
+    <div class="w-50 p-4">party bonuses</div>
   </div>
 </template>
