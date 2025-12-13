@@ -14,6 +14,10 @@ function handleHeroRemove(hero: string) {
 
   model.value = model.value.filter((h) => h !== hero)
 }
+
+function handleRemoveAll() {
+  model.value = []
+}
 </script>
 
 <template>
@@ -36,6 +40,12 @@ function handleHeroRemove(hero: string) {
       >
         x
       </div>
+    </li>
+    <li
+      class="mt-4 w-full border rounded-full select-none hover:bg-white hover:text-black flex align-middle justify-center hover:cursor-pointer"
+      @click="handleRemoveAll"
+    >
+      Revemove All
     </li>
   </ul>
 </template>
