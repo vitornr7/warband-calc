@@ -33,7 +33,7 @@ function handleHeroRemove(hero: string) {
 </script>
 
 <template>
-  <div class="bg-amber-950 text-amber-100 h-screen antialiased flex">
+  <div class="h-screen overflow-auto antialiased flex bg-black text-white">
     <!-- companion list section -->
     <div class="w-50 h-full p-2">
       <h2 class="text-center mb-4">Companions</h2>
@@ -42,7 +42,7 @@ function handleHeroRemove(hero: string) {
         <li v-for="hero in heroes" :key="hero" class="flex">
           <!-- add companion button -->
           <div
-            class="w-full border-2 border-amber-800 rounded-full select-none bg-amber-600 hover:bg-amber-200 text-amber-100 flex align-middle justify-center"
+            class="w-full border rounded-full select-none hover:bg-white hover:text-black flex align-middle justify-center"
             :class="selectedHeroes.includes(hero) ? 'rounded-r-none' : ''"
             @click="handleHeroSelected(hero)"
           >
@@ -52,7 +52,7 @@ function handleHeroRemove(hero: string) {
           <!-- remove companion button -->
           <div
             v-if="selectedHeroes.includes(hero)"
-            class="w-10 border-2 border-amber-800 rounded-full rounded-l-none border-l-0 select-none bg-amber-600 hover:bg-amber-200 font-bold text-red-500"
+            class="w-10 border border-white rounded-full rounded-l-none border-l-0 select-none hover:bg-white hover:text-black font-bold"
             @click="handleHeroRemove(hero)"
           >
             x
@@ -66,14 +66,18 @@ function handleHeroRemove(hero: string) {
       <!-- {{ selectedHeroes }} -->
       <div class="border border-blue-200 h-full w-fit p-2">
         <!-- info -->
-        <h2>Name</h2>
+        <h2 class="m-2 border-b border-white">Name</h2>
 
         <!-- stats -->
-        <h2>Status</h2>
-        <InputLevel label="Test Skill" />
+        <h2 class="m-2 border-b border-white">Status</h2>
+        <InputLevel label="STR" />
+        <InputLevel label="AGI" />
+        <InputLevel label="INT" />
+        <InputLevel label="CHA" />
 
         <!-- skills -->
-        <h2>Skills</h2>
+        <h2 class="m-2 border-b border-white">Skills</h2>
+        <InputLevel v-for="i in 24" :key="`skillLbl-${i}`" :label="`${i}`" />
       </div>
     </div>
 

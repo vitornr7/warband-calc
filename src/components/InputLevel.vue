@@ -5,11 +5,11 @@ const props = defineProps<{
   label: string
 }>()
 
-const value = defineModel()
+const value = defineModel({ default: 0 })
 </script>
 
 <template>
-  <div class="flex items-center text-center gap-4 justify-between">
+  <div class="flex items-center text-center gap-10 justify-between">
     <!-- skill label -->
     <span>{{ props.label }}</span>
 
@@ -17,6 +17,7 @@ const value = defineModel()
     <div class="flex gap-1">
       <!-- min value button -->
       <!-- <ButtonLevel label="<" /> -->
+
       <!-- -1 button -->
       <ButtonLevel label="-" />
 
@@ -25,6 +26,7 @@ const value = defineModel()
 
       <!-- +1 button -->
       <ButtonLevel label="+" />
+
       <!-- max value button -->
       <!-- <ButtonLevel label=">" /> -->
     </div>
