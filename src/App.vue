@@ -7,7 +7,7 @@ const selectedHeroes = ref<string[]>([])
 </script>
 
 <template>
-  <div class="antialiased flex bg-black text-white p-2 min-h-screen w-full">
+  <div class="antialiased flex bg-black text-white p-2 h-dvh w-full overflow-auto">
     <!-- companion list section -->
     <div class="w-50">
       <h2 class="text-center mb-4 text-lg">Companions</h2>
@@ -15,7 +15,7 @@ const selectedHeroes = ref<string[]>([])
     </div>
 
     <!-- card section -->
-    <div class="w-full h-fit p-4 border rounded-lg mx-4 flex gap-4 overflow-x-scroll">
+    <div class="w-full p-4 border rounded-lg mx-4 flex gap-4 overflow-scroll max-h-dvh 2xl:h-fit">
       <HeroCard name="Player" />
       <HeroCard v-for="hero in selectedHeroes" :key="hero" :name="hero" />
     </div>
