@@ -10,7 +10,7 @@ const selectedHeroes = ref<string[]>([])
   <div class="antialiased flex bg-black text-white p-2">
     <!-- companion list section -->
     <div class="w-50">
-      <h2 class="text-center mb-4">Companions</h2>
+      <h2 class="text-center mb-4 text-lg">Companions</h2>
       <CompanionPicker v-model="selectedHeroes" />
     </div>
 
@@ -22,7 +22,7 @@ const selectedHeroes = ref<string[]>([])
 
     <!-- party bonuses section -->
     <div class="w-100">
-      <h2 class="text-center mb-4">Party Bonuses</h2>
+      <h2 class="text-center mb-4 text-lg">Party Bonuses</h2>
     </div>
   </div>
 </template>
