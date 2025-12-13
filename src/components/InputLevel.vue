@@ -12,7 +12,7 @@ const value = defineModel({ default: 0 })
 
 <template>
   <div
-    class="flex items-center text-center gap-2 justify-between border border-transparent hover:border-white select-none"
+    class="flex items-center text-sm text-center gap-2 justify-between border border-transparent hover:border-white select-none"
   >
     <!-- skill label -->
     <span>{{ props.label }}</span>
