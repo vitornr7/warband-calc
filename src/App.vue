@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import InputLevel from './components/InputLevel.vue'
 
 const heroes = [
   'Alayen',
@@ -62,7 +63,18 @@ function handleHeroRemove(hero: string) {
 
     <!-- card section -->
     <div class="w-full h-full p-4 border">
-      {{ selectedHeroes }}
+      <!-- {{ selectedHeroes }} -->
+      <div class="border border-blue-200 h-full w-fit p-2">
+        <!-- info -->
+        <h2>Name</h2>
+
+        <!-- stats -->
+        <h2>Status</h2>
+        <InputLevel label="Test Skill" />
+
+        <!-- skills -->
+        <h2>Skills</h2>
+      </div>
     </div>
 
     <!-- party bonuses section -->
