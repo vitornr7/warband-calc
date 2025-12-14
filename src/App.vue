@@ -9,13 +9,17 @@ const playerRef = useTemplateRef('playerRef')
 const selectedHeroes = ref<string[]>([])
 
 function handleScrollToPlayerCard() {
-  playerRef.value?.$el.scrollIntoView({ behavior: 'smooth' })
+  playerRef.value?.$el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' })
 }
 
 function handleScrollToCompanionCard(hero: string) {
   if (!heroCardsRefs.value) return
   const index = selectedHeroes.value.findIndex((h) => h === hero)
-  heroCardsRefs.value[index]?.$el.scrollIntoView({ behavior: 'smooth' })
+  heroCardsRefs.value[index]?.$el.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center',
+    inline: 'center',
+  })
 }
 </script>
 
