@@ -8,7 +8,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="border h-fit rounded-lg w-fit p-2 text-center">
+  <div class="border rounded-lg w-fit p-2 text-center flex flex-col">
     <!-- info -->
     <h2 class="m-2 text-md border-b select-none">{{ props.name }}</h2>
     <InputLevel label="Level" />
@@ -22,6 +22,8 @@ const props = defineProps<{
 
     <!-- skills -->
     <h2 class="m-2 text-md border-b select-none">Skills</h2>
-    <InputLevel v-for="skill in skills" :key="skill" :label="skill" />
+    <div class="overflow-y-scroll">
+      <InputLevel v-for="skill in skills" :key="skill" :label="skill" />
+    </div>
   </div>
 </template>
