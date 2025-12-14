@@ -2,11 +2,13 @@
 import { heroes } from '@/data/consts'
 
 const model = defineModel<string[]>()
+const emit = defineEmits(['scrollToPlayerCard', 'scrollToCompanionCard'])
 
 function handleHeroSelected(hero: string) {
   if (!model.value) return
 
   if (!model.value.includes(hero)) model.value?.push(hero)
+  else emit('scrollToCompanionCard', hero)
 }
 
 function handleHeroRemove(hero: string) {
@@ -22,6 +24,13 @@ function handleRemoveAll() {
 
 <template>
   <ul class="flex flex-col gap-1 text-center">
+    <li
+      class="mb-4 w-full border rounded-full select-none hover:bg-white hover:text-black flex align-middle justify-center hover:cursor-pointer"
+      @click="emit('scrollToPlayerCard')"
+    >
+      Player
+    </li>
+
     <li v-for="hero in heroes" :key="hero" class="flex">
       <!-- add companion button -->
       <div

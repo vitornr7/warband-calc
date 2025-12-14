@@ -1,9 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, useTemplateRef } from 'vue'
 import HeroCard from './components/HeroCard.vue'
 import CompanionPicker from './components/CompanionPicker.vue'
 
+const heroCardsRefs = useTemplateRef('heroCardsRefs')
+const playerRef = useTemplateRef('playerRef')
+
 const selectedHeroes = ref<string[]>([])
+
+function handleScrollToPlayerCard() {
+  playerRef.value?.$el.scrollIntoView({ behavior: 'smooth' })
+}
+
+function handleScrollToCompanionCard(hero: string) {
+  if (!heroCardsRefs.value) return
+  const index = selectedHeroes.value.findIndex((h) => h === hero)
+  heroCardsRefs.value[index]?.$el.scrollIntoView({ behavior: 'smooth' })
+}
 </script>
 
 <template>
@@ -11,13 +24,17 @@ const selectedHeroes = ref<string[]>([])
     <!-- companion list section -->
     <div class="w-50 overflow-scroll">
       <h2 class="text-center mb-4 text-lg select-none">Companions</h2>
-      <CompanionPicker v-model="selectedHeroes" />
+      <CompanionPicker
+        v-model="selectedHeroes"
+        @scroll-to-player-card="handleScrollToPlayerCard"
+        @scroll-to-companion-card="handleScrollToCompanionCard"
+      />
     </div>
 
     <!-- card section -->
     <div class="w-full p-4 border rounded-lg mx-4 flex gap-4 overflow-scroll 2xl:h-fit">
-      <HeroCard name="Player" />
-      <HeroCard v-for="hero in selectedHeroes" :key="hero" :name="hero" />
+      <HeroCard name="Player" ref="playerRef" />
+      <HeroCard v-for="hero in selectedHeroes" :key="hero" :name="hero" ref="heroCardsRefs" />
     </div>
 
     <!-- party bonuses section -->
