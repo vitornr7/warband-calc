@@ -23,7 +23,7 @@ const value = defineModel({ default: 0 })
       <!-- <ButtonLevel label="<" /> -->
 
       <!-- -1 button -->
-      <ButtonLevel label="-" />
+      <ButtonLevel label="-" @click="value--" />
 
       <!-- type level button -->
       <input
@@ -33,7 +33,7 @@ const value = defineModel({ default: 0 })
       />
 
       <!-- +1 button -->
-      <ButtonLevel label="+" />
+      <ButtonLevel label="+" @click="value++" />
 
       <!-- max value button -->
       <!-- <ButtonLevel label=">" /> -->

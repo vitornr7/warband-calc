@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { heroes } from '@/data/consts'
+import { companionLabels } from '@/data/consts'
 
 const model = defineModel<string[]>()
 const emit = defineEmits(['scrollToCompanionCard'])
@@ -35,7 +35,7 @@ function handleRemoveAll() {
       Player
     </li>
 
-    <li v-for="hero in heroes" :key="hero" class="flex">
+    <li v-for="hero in companionLabels" :key="hero" class="flex">
       <!-- add companion button -->
       <div
         class="w-full border rounded-full select-none hover:bg-white hover:text-black flex align-middle justify-center hover:cursor-pointer"
