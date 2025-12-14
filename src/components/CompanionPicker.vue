@@ -2,7 +2,7 @@
 import { heroes } from '@/data/consts'
 
 const model = defineModel<string[]>()
-const emit = defineEmits(['scrollToPlayerCard', 'scrollToCompanionCard'])
+const emit = defineEmits(['scrollToCompanionCard'])
 
 function handleHeroSelected(hero: string) {
   if (!model.value) return
@@ -22,7 +22,7 @@ function handleHeroRemove(hero: string) {
 }
 
 function handleRemoveAll() {
-  model.value = []
+  model.value = ['Player']
 }
 </script>
 
@@ -30,7 +30,7 @@ function handleRemoveAll() {
   <ul class="flex flex-col gap-1 text-center">
     <li
       class="mb-4 w-full border rounded-full select-none hover:bg-white hover:text-black flex align-middle justify-center hover:cursor-pointer"
-      @click="emit('scrollToPlayerCard')"
+      @click="handleHeroSelected('Player')"
     >
       Player
     </li>
