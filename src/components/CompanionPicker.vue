@@ -7,8 +7,12 @@ const emit = defineEmits(['scrollToPlayerCard', 'scrollToCompanionCard'])
 function handleHeroSelected(hero: string) {
   if (!model.value) return
 
-  if (!model.value.includes(hero)) model.value?.push(hero)
-  else emit('scrollToCompanionCard', hero)
+  if (!model.value.includes(hero)) {
+    model.value?.push(hero)
+    setTimeout(() => emit('scrollToCompanionCard', hero), 100)
+  } else {
+    emit('scrollToCompanionCard', hero)
+  }
 }
 
 function handleHeroRemove(hero: string) {

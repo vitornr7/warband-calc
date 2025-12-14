@@ -12,7 +12,12 @@ function handleScrollToPlayerCard() {
   playerRef.value?.$el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' })
 }
 
+const blink = ref('')
+let timeout: number | undefined
+
 function handleScrollToCompanionCard(hero: string) {
+  clearTimeout(timeout)
+
   if (!heroCardsRefs.value) return
   const index = selectedHeroes.value.findIndex((h) => h === hero)
   heroCardsRefs.value[index]?.$el.scrollIntoView({
@@ -20,6 +25,9 @@ function handleScrollToCompanionCard(hero: string) {
     block: 'center',
     inline: 'center',
   })
+
+  blink.value = hero
+  timeout = setTimeout(() => (blink.value = ''), 2100)
 }
 </script>
 
@@ -38,7 +46,13 @@ function handleScrollToCompanionCard(hero: string) {
     <!-- card section -->
     <div class="w-full p-4 border rounded-lg mx-4 flex gap-4 overflow-x-scroll 2xl:h-fit">
       <HeroCard name="Player" ref="playerRef" />
-      <HeroCard v-for="hero in selectedHeroes" :key="hero" :name="hero" ref="heroCardsRefs" />
+      <HeroCard
+        v-for="hero in selectedHeroes"
+        :key="hero"
+        :name="hero"
+        ref="heroCardsRefs"
+        :class="blink === hero ? 'animate-pulse' : ''"
+      />
     </div>
 
     <!-- party bonuses section -->
